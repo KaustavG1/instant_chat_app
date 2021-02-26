@@ -18,6 +18,8 @@
   "homepage": "https://github.com/KaustavG1/instant_chat_app#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.11.18",
     "socket.io": "^3.1.1"
   },
   "devDependencies": {

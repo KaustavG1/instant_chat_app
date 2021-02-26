@@ -5,20 +5,22 @@ const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/node-demo");
+
 app.get('/', (request, response) => {
     response.sendFile(__dirname + "/index.html");
-    // console.log("New connection");
 });
 
-// io.on('connection', (socket) => {
-//     console.log('New user connected');
-//     socket.on('chat message', (msg) => {
-//         io.emit('chat message', msg);
-//     });
-// });
+io.on('connection', (socket) => {
+    socket.on('chat message', msg => {
+        // io.emit('chat message', msg);
+        console.log(msg);
+    });
+});
 
 io.on('connection', (socket) => {
-    //console.log("Client connected!");
     socket.on('message-from-client-to-server', (msg) => {
         console.log(msg);
     })
